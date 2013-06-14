@@ -10,7 +10,7 @@ node_demo
 	* socket.io <-> SignalR
 	* Jasmine/Mocha <-> NUnit/MSTest
 * installing node
-
+	* download from http://nodejs.org/
 
 
 
