@@ -14,15 +14,24 @@ node_demo
 * add a package.josn file
   * add dependency for express
 * run npm install, see express installed
-* create app.json
+* create app.js
 * wire up default root "/" to serve a static file (index.html)
+* show static page being served
 * add dependency to socket.io
 * add code on connection to emit some event
 * add clientside code to index.html. See how socket.io serves its own clientside script
-* add clientside event handler that writes to console on event emitted from server
+* add clientside event handler that writes to console on event received from server
 * add stdio code to server. When anything's typed on stdin, publish it to all listeners
-* launch two browsers and see messages from server being published.
+* launch two browsers (with consoles showing) and see messages from server being published.
 * re-work client so it puts messages in a <UL> element on the page instead of on console
-* add textbox and button to client. WHen click button, emit an event for the server to listen for
+* add textbox and button to client. When button clicked, emit an event for the server to listen for
 * make server listen for event. On receiving it, publish to all listeners.
-* chat chat chat!
+* refresh browsers and demonstrate real-time chat
+
+
+ideas
+=====
+
+* publish it on Azure
+* tests
+* error handling
