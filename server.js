@@ -28,7 +28,7 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-process.stdin.resume();
-process.stdin.on('data', function(chunk) {
-  publishToAllListeners("" + chunk);
-});
+// process.stdin.resume();
+// process.stdin.on('data', function(chunk) {
+//   publishToAllListeners("" + chunk);
+// });
