@@ -7,7 +7,7 @@ var port = process.env.port || 80;
 server.listen(port);
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+  res.sendfile(__dirname + '/views/index.html');
 });
 
 var connected = [];
