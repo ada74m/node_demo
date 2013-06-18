@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "author": "adam",
   "private": true,
-  "dependencies" : {
-    "express": ">3.0.0",
-    "socket.io": ">0.9"
+  "dependencies": {
+    "socket.io": "~0.9.16",
+    "express": "~3.2.6"
   }
 }

@@ -14,7 +14,7 @@ node_demo
 * add a package.josn file
   * add dependency for express
 * run npm install, see express installed
-* create app.js
+* create server.js
 * wire up default root "/" to serve a static file (index.html)
 * show static page being served
 * add dependency to socket.io
@@ -28,6 +28,16 @@ node_demo
 * make server listen for event. On receiving it, publish to all listeners.
 * refresh browsers and demonstrate real-time chat
 
+* publish to azure
+  * log on to azure portal
+  * new ->  compute -> website -> quick create 
+  * url = nodeazchat, region = North Europe 
+  * click create and wait
+  * go into new website, click "Setup deployment from source control" and select "local git repository"
+  * see instructions on how to publish
+  * in git bash, do 
+    * git remote add azure https://ada74m@nodeazchat.scm.azurewebsites.net/nodeazchat.git
+    * git push azure master 
 
 ideas
 =====
