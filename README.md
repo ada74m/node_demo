@@ -18,26 +18,26 @@ Build an app
 * `npm install express -save`
 * see dependency added in package.json
 * create server.js in text editor
-    var app = require('express')(), 
-        server = require('http').createServer(app);
+      var app = require('express')(), 
+          server = require('http').createServer(app);
 
-    var port = process.env.port || 80;
+      var port = process.env.port || 80;
 
-    app.get('/', function (req, res) {
-      res.sendfile(__dirname + '/views/index.html');
-    });
+      app.get('/', function (req, res) {
+        res.sendfile(__dirname + '/views/index.html');
+      });
 
-    server.listen(port);
+      server.listen(port);
 * `mkdir views`
 * create index.html file under views
-    <html>
-      <head>
-        <title>Node chat</title>
-      </head>
-      <body>
-        <h1>Node chat</h1>
-      </body>
-    <html>
+      <html>
+        <head>
+          <title>Node chat</title>
+        </head>
+        <body>
+          <h1>Node chat</h1>
+        </body>
+      <html>
 * `node server.js`
 * show static page being served
 * add dependency to socket.io
