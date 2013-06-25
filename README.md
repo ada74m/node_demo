@@ -78,7 +78,7 @@ Build an app
 
           <ul id="conversation"></ul>
 
-* Run `node server.js` again, visit the page and see the welcom message being writen out when the connection is made 
+* Run `node server.js` again, visit the page and see the welcome message being writen out when the connection is made 
 * Now we'd like the client to send messages back to the server. The user will type a message into a text box and click a button to send it. Add the following to index.html
 
           <input id="message" />
@@ -145,12 +145,7 @@ Publish to azure
           git commit -m "initial commit"          
 
   * then
-    * git remote add azure https://ada74m@node-chat.scm.azurewebsites.net/node-chat.git
-    * git push azure master 
 
-ideas
-=====
+          git remote add azure https://ada74m@node-chat.scm.azurewebsites.net/node-chat.git
+          git push azure master 
 
-* publish it on Azure
-* tests
-* error handling
