@@ -44,16 +44,90 @@ Build an app
 
 *  `node server.js`
 * show static page being served
-* add dependency to socket.io
-* add code on connection to emit some event
-* add clientside code to index.html. See how socket.io serves its own clientside script
-* add clientside event handler that writes to console on event received from server
-* add stdio code to server. When anything's typed on stdin, publish it to all listeners
-* launch two browsers (with consoles showing) and see messages from server being published.
-* re-work client so it puts messages in a <UL> element on the page instead of on console
-* add textbox and button to client. When button clicked, emit an event for the server to listen for
-* make server listen for event. On receiving it, publish to all listeners.
-* refresh browsers and demonstrate real-time chat
+* `npm install socket.io -save`
+* see socket.io in package.json
+* add `io = require('socket.io').listen(server)` to the top of server.js so now it looks like this:
+
+          var app = require('express')(), 
+              server = require('http').createServer(app),
+              io = require('socket.io').listen(server);
+
+* now the socket.io server component will be running. One of the things the server component does is serve out the client-side javascript required on the browser.
+* So put this in `<head>` of index.html (N.B. we'll be using jquery a bit later so add that in now, too)
+
+          <script src="/socket.io/socket.io.js"></script>
+          <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+
+* Run `node server.js`, visit page in browser and see the clientside script's been loaded
+* Now we want to make the server send some data to the client, when the client first connects. Add the following to server.js
+
+          io.sockets.on('connection', function (socket) {
+            socket.emit('chat', { message: 'welcome to node chat' });
+          });
+
+* And we want to make the client respond to the "chat" message, so add this script to index.html
+
+          <script>
+            function startListening(socket) {
+              socket.on('chat', function (data) {
+                $('#conversation').append("<li>" + data .message + "</li>"); 
+              });
+            }
+
+            $(function() {
+              var socket = io.connect('/');
+              startListening(socket);
+            });
+          </script>
+
+* This wants to append `<li>` elements underneath an element with id `conversation`, so add this to the body:
+
+          <ul id="conversation"></ul>
+
+* Run `node server.js` again, visit the page and see the welcom message being writen out when the connection is made 
+* Now we'd like the client to send messages back to the server. The user will type a message into a text box and click a button to send it. Add the following to index.html
+
+          <input id="message" />
+          <button id="send">send</button>
+
+* And also this...
+
+          function startTalking(socket) {
+              $('#send').click(function() {
+                var msg = $('#message').val();
+                socket.emit('backchat', { message: msg });
+              });
+          }
+
+* And call this function from the page load event: `startTalking(socket);`
+* Now, the client is sending the server an event named 'backchat' containing the user's message. We need to make the server respond to it.
+* When a message is received by the server, we'll want to send it to every connected client, so we need the server to keep track of all the connected clients. Add this to server.js:
+
+          var connected = [];
+
+* and this (inside the "on connection" block):
+
+          connected.push(socket);
+
+* then, underneath `var connected = [];`, add this function:
+
+          var publishToAllListeners = function(message) {
+            var max = connected.length, i, socket;
+            for (i=0; i<max; ++i) {
+              socket = connected[i];
+              socket.emit('chat', { message: message });
+            }
+          }
+
+* and under `connected.push(socket);` add code to call it whenever the 'backchat' event is received:
+
+          socket.on('backchat', function (data) {
+            publishToAllListeners(data.message);
+          });
+
+* Run `node server.js` and launch two browsers.
+* Type a message in one browser and see it pop up in the other one too.
+
 
 * publish to azure
   * log on to azure portal
