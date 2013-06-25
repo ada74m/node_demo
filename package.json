@@ -1,14 +1,9 @@
 {
-  "name": "node-demo",
+  "name": "node-chat",
   "version": "0.0.1",
-  "author": "adam",
-  "private": true,
-  "dependencies": {
-    "socket.io": "~0.9.16",
-    "express": "~3.2.6"
-  },
-  "engines": {
-    "node": "0.8.x"
-  }
 
+  "dependencies": {
+    "express": "~3.2.6",
+    "socket.io": "~0.9.16"
+  }
 }
