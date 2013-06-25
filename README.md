@@ -9,13 +9,36 @@ node_demo
 	* Express <-> Nancy
 	* socket.io <-> SignalR
 	* Jasmine/Mocha <-> NUnit/MSTest
-* install node
-	* download from http://nodejs.org/
-* add a package.josn file
-  * add dependency for express
-* run npm install, see express installed
-* create server.js
-* wire up default root "/" to serve a static file (index.html)
+
+Build an app
+============
+* `mkdir node_chat` 
+* `cd node_chat` 
+* `echo {} > package.json`
+* `npm install express -save`
+* see dependency added in package.json
+* create server.js in text editor
+    var app = require('express')(), 
+        server = require('http').createServer(app);
+
+    var port = process.env.port || 80;
+
+    app.get('/', function (req, res) {
+      res.sendfile(__dirname + '/views/index.html');
+    });
+
+    server.listen(port);
+* `mkdir views`
+* create index.html file under views
+    <html>
+      <head>
+        <title>Node chat</title>
+      </head>
+      <body>
+        <h1>Node chat</h1>
+      </body>
+    <html>
+* `node server.js`
 * show static page being served
 * add dependency to socket.io
 * add code on connection to emit some event
