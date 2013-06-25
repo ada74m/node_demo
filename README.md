@@ -133,18 +133,18 @@ Publish to azure
             io.set("polling duration", 10); 
           });
 
-  * log on to azure portal
-  * click new -> compute -> website -> quick create
-  * url = 'node-chat', region = 'North Europe'
-  * go into new website, click "Setup deployment from source control" and select "local git repository"
-  * create a .gitignore file (maybe copy from another project)
-  * then do 
+* log on to azure portal
+* click new -> compute -> website -> quick create
+* url = 'node-chat', region = 'North Europe'
+* go into new website, click "Setup deployment from source control" and select "local git repository"
+* create a .gitignore file (maybe copy from another project)
+* then do 
 
           git init
           git add .
           git commit -m "initial commit"          
 
-  * then
+* then
 
           git remote add azure https://ada74m@node-chat.scm.azurewebsites.net/node-chat.git
           git push azure master 
