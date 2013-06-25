@@ -1,20 +1,14 @@
-node_demo
-=========
-
-* what it is, where it came from
-	* browser wars 2.0 javascript engine arms race
-	* took V8 engine, ran on server, added non-blocking HTTP, filesystem and other libraries
-* .NET equivalences
-	* npm <-> NuGet
-	* Express <-> Nancy
-	* socket.io <-> SignalR
-	* Jasmine/Mocha <-> NUnit/MSTest
-
 Build an app
 ============
 * `mkdir node_chat` 
 * `cd node_chat` 
-* `echo {} > package.json`
+* create file package.json containing this:
+
+          {
+            "name": "node-chat",
+            "version": "0.0.1"
+          }
+
 * `npm install express -save`
 * see dependency added in package.json
 * create server.js in text editor
@@ -129,15 +123,29 @@ Build an app
 * Type a message in one browser and see it pop up in the other one too.
 
 
-* publish to azure
+Publish to azure
+================
+
+* Socket.io uses various channels to communicate between server and client: web sockets if available, long polling, flash. Windows Azure websites don't let you open web sockets, so if we want it to work on Azure we need to tell socket.io to use long polling instead. Add this near the top of server.js
+
+          io.configure(function () { 
+            io.set("transports", ["xhr-polling"]); 
+            io.set("polling duration", 10); 
+          });
+
   * log on to azure portal
-  * new ->  compute -> website -> quick create 
-  * url = nodeazchat, region = North Europe 
-  * click create and wait
+  * click new -> compute -> website -> quick create
+  * url = 'node-chat', region = 'North Europe'
   * go into new website, click "Setup deployment from source control" and select "local git repository"
-  * see instructions on how to publish
-  * in git bash, do 
-    * git remote add azure https://ada74m@nodeazchat.scm.azurewebsites.net/nodeazchat.git
+  * create a .gitignore file (maybe copy from another project)
+  * then do 
+
+          git init
+          git add .
+          git commit -m "initial commit"          
+
+  * then
+    * git remote add azure https://ada74m@node-chat.scm.azurewebsites.net/node-chat.git
     * git push azure master 
 
 ideas
