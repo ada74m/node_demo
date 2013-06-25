@@ -30,14 +30,14 @@ Build an app
       server.listen(port);
 * `mkdir views`
 * create index.html file under views
-      <html>
-        <head>
-          <title>Node chat</title>
-        </head>
-        <body>
-          <h1>Node chat</h1>
-        </body>
-      <html>
+          <html>
+            <head>
+              <title>Node chat</title>
+            </head>
+            <body>
+              <h1>Node chat</h1>
+            </body>
+          <html>
 * `node server.js`
 * show static page being served
 * add dependency to socket.io
