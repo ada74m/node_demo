@@ -149,3 +149,4 @@ Publish to azure
           git remote add azure https://ada74m@node-chat.scm.azurewebsites.net/node-chat.git
           git push azure master 
 
+* Finally, visit http://node-chat.azurewebsites.net/
